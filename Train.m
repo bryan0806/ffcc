@@ -20,6 +20,7 @@ function Train(project_name, additional_code)
 % parameters for experimentation.
 
 addpath(genpath('./internal/'))
+addpath(genpath('./minFunc_2012/'));
 params = LoadProjectParams(project_name);
 
 if nargin < 2
