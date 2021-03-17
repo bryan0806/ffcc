@@ -35,7 +35,7 @@ function Tune(project_name, overwrite_parameters, additional_code)
 %     output file to make experiments easier to parse.
 
 addpath(genpath('./internal/'))
-
+addpath(genpath('./minFunc_2012/'));
 if nargin < 2
   overwrite_parameters = true;
 end

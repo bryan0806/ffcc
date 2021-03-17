@@ -37,7 +37,7 @@ X_sums = arrayfun(@(x) sum(sum(x.X,2),1), data, 'UniformOutput', false);
 X_sums = squeeze(cat(3, X_sums{:}));
 assert(all((abs(X_sums - 1) < 1e-8) | (abs(X_sums) < 1e-8)))
 
-rng('default')
+%rng('default')
 models = {};
 n_folds = length(data(1).is_test);
 train_metadata.final_losses = nan(1, n_folds);
@@ -238,7 +238,7 @@ for i_fold = 1:n_folds
     else
       lbfgs_options.Display = 'off';
     end
-
+addpath("D:\\DATA\\Documents\\Google\\ffcc-master\\minFunc_2012");
     [model_vec, ~, ~, output] = minFunc(lossfun, model_vec, lbfgs_options, ...
       data_fold, regularizer, preconditioner, params);
 

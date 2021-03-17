@@ -18,8 +18,9 @@ function Visualize(project_name, additional_code)
 % output into the project's output_visualization_folder.
 % TODO(barron): better integrate this with Test()
 
-addpath(genpath('./internal/'))
-
+addpath(genpath('./internal/'));
+addpath(genpath('./minFunc_2012/'));
+fprintf('project name:%s',project_name);
 params = LoadProjectParams(project_name);
 
 if nargin < 2
@@ -29,8 +30,8 @@ end
 % Evaluate any additional code that might have been passed in.
 assert(ischar(additional_code));
 if ~isempty(additional_code)
-  fprintf('Additional code: %s\n', additional_code)
-  eval(additional_code)
+  fprintf('Additional code: %s\n', additional_code);
+  eval(additional_code);
 end
 
 data = PrecomputeMixedData(...

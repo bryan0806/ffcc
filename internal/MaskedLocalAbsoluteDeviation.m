@@ -41,10 +41,12 @@ else
   assert(0)
 end
 
+fprintf("................im type:%s\n",typeinfo(im));
+
 im_edge = {};
 for c = 1:size(im,3)
-  numer = zeros(size(im,1), size(im,2), 'like', im);
-  denom = zeros(size(im,1), size(im,2), 'like', im);
+  numer = zeros(size(im,1), size(im,2), "int16");
+  denom = zeros(size(im,1), size(im,2), "int16");
   for oi = -1:1
     for oj = -1:1
       if (oi == 0) && (oj == 0)

@@ -19,6 +19,8 @@ function data = PrecomputeTrainingData(folder, params)
 % If 'folder' is actually a cell array of folders, then we recursively call
 % PrecomputeTrainingData() on each subfolder and concatenate the output of
 % each call.
+fprintf("folder:%s\n",folder);
+
 if iscell(folder)
 
   data = {};
@@ -29,17 +31,20 @@ if iscell(folder)
 
 else
 
-  rng('default')
+  %rng('default')
+  
+  print_name = folder(1+find(folder(1:end-1) == '\', 1, 'last'):end);
 
-  print_name = folder(1+find(folder(1:end-1) == '/', 1, 'last'):end);
-
+  fprintf("folder:%s\n",folder);
+  folder="D:\\DATA\\Documents\\Google\\projects\\shi_gehler";
+   fprintf("folder:%s\n",folder);
   assert(exist(folder, 'dir') > 0);
 
   % Grab all png images in this folder and in any sub-folder.
   image_filenames = ScrapeFolder(folder, '*.png');
 
   % Omit image filenames in an "augmented" subfolder.
-  image_filenames = image_filenames( ...
+  image_filenames = image_filenames( ...   
     cellfun(@(x) isempty(strfind(x, '/face/')), image_filenames));
 
   % Subsample the training data, which usually should only happen during
@@ -70,6 +75,9 @@ else
       cvfoldidx = load(cvfolds_filename);
       cvfoldidx = cvfoldidx(1:params.DEBUG.DATA_SUBSAMPLE:length(cvfoldidx));
       assert(params.TRAINING.CROSSVALIDATION.NUM_FOLDS == max(cvfoldidx));
+      
+      fprintf("image filenames length:%i , cvfolderidx length:%i\n",length(image_filenames),length(cvfoldidx));
+      
       assert(length(image_filenames) == length(cvfoldidx));
       is_test = sparse(1:length(cvfoldidx), cvfoldidx, true);
     else
@@ -106,6 +114,7 @@ else
 
       % Compute the feature histogram.
       start_time = clock;
+      fprintf("................I_linear type:%s\n",typeinfo(I_linear));
       X = FeaturizeImage(I_linear, I_valid, params);
       feature_time = etime(clock, start_time);
     else

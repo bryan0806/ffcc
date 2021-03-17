@@ -181,7 +181,7 @@ for i_pass = 1:tune_params.NUM_ITERS;
           fprintf('params.HYPERPARAMS = %s;\n', BlobToString( ...
             params.HYPERPARAMS, true));
         end
-
+        fprintf("filename:%s\n",filename);
         if ~isempty(filename)
           fid = fopen(filename, 'w');
           fprintf(fid, '%s\n', preamble);

@@ -19,6 +19,8 @@ function data_augmented = PrecomputeMixedData( ...
 % used in the training set of every cross-validation fold. This allows us
 % to experiment with domain adaptation across sensors and datasets.
 
+fprintf("cross validation folder:%s\n",crossvalidate_folder);
+
 if isempty(params.TRAINING.CROSSVALIDATION_DATA_FOLDER)
   assert(params.TRAINING.CROSSVALIDATION.NUM_FOLDS == 0)
   data_cv = [];

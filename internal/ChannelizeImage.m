@@ -20,5 +20,7 @@ assert(isa(mask, 'logical'));
 
 im_channels = {};
 
-im_channels{1} = cast(bsxfun(@times, double(im), mask), 'like', im);
-im_channels{2} = cast(MaskedLocalAbsoluteDeviation(im, mask), 'like', im);
+fprintf("................im type:%s\n",typeinfo(im));
+
+im_channels{1} = cast(bsxfun(@times, double(im), mask), "uint8");
+im_channels{2} = cast(MaskedLocalAbsoluteDeviation(im, mask), "uint8");

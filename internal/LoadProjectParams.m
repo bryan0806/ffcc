@@ -23,14 +23,15 @@ function params = LoadProjectParams(project_name)
 % the /ffcc/scripts/ subfolder, so we need to handle both cases.
 cur_dir = pwd;
 if strcmp(cur_dir((find(cur_dir == '/', 1, 'last')+1):end), 'ffcc')
-  projects_dir = './projects';
+  projects_dir = '.\\projects';
 else
-  projects_dir = '../projects';
+  projects_dir = '..\\projects';
 end
+fprintf('project dir:\n',projects_dir);
+fprintf('project name:\n',project_name);
+addpath(fullfile(projects_dir, project_name));
 
-addpath(fullfile(projects_dir, project_name))
-
-addpath(fullfile(projects_dir, project_name))
+addpath(fullfile(projects_dir, project_name));
 func_constants = str2func([project_name, 'Constants']);
 
 hyperparams_filename = ...
@@ -39,8 +40,8 @@ if exist(hyperparams_filename, 'file')
   func_hyperparams = str2func([project_name, 'Hyperparams']);
 else
   fprintf('%s does not exist, using default hyperparameters\n', ...
-    hyperparams_filename)
-  addpath(projects_dir)
+    hyperparams_filename);
+  addpath(projects_dir);
   func_hyperparams = str2func('DefaultHyperparams');
 end
 
