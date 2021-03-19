@@ -218,14 +218,29 @@ for i_data = 1:length(data)
     L_vis = CCM * UvToRgb(mu);
     L_vis = L_vis / max(L_vis(:));
     L_vis = uint8(255 * ApplySrgbGamma(max(0, min(1, L_vis))));
-    L_vis = permute(L_vis, [2,3,1]);
+    size(L_vis);
+    fprintf("size of L_vis:%i",size(L_vis));
+    size(L_vis);
+    %L_vis = permute(L_vis, [2,3,1]);
+    %L_vis = permute(L_vis, [1,2,3]);
+    
+    
+    
     L_vis = imresize(L_vis, [256, 32]);
+    %L_vis = imresize(L_vis,0.5);
+    %L_vis = imresize(L_vis, [256, 32],'bilinear');
 
     Lt_vis = CCM * UvToRgb(uv_true);
     Lt_vis = Lt_vis / max(Lt_vis(:));
     Lt_vis = uint8(255 * ApplySrgbGamma(max(0, min(1, Lt_vis))));
-    Lt_vis = permute(Lt_vis, [2,3,1]);
+    size(Lt_vis);
+    fprintf("size of L_vis:%i",size(Lt_vis));
+    %Lt_vis = permute(Lt_vis, [2,3,1]);
+    %Lt_vis = permute(Lt_vis, [1,2,3]);
     Lt_vis = imresize(Lt_vis, [256, 32]);
+    %Lt_vis = imresize(Lt_vis,0.5);
+    %L_vis = imresize(L_vis, [32, NaN]);
+    %Lt_vis = imresize(Lt_vis, [256, 32],'bilinear');
 
     P_bvm = double( ...
       RenderHistogramGaussian(mu, Sigma, Y, size(I_ours,1), false, params))/255;

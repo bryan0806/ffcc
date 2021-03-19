@@ -54,4 +54,5 @@ model = models{1};
 
 % Save the trained model.
 fprintf('Saving model to %s\n', params.output_model_filename);
-save(params.output_model_filename, 'model');
+%save(params.output_model_filename, 'model');
+save params.output_model_filename model
