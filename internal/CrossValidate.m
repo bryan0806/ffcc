@@ -221,13 +221,13 @@ for i_data = 1:length(data)
     size(L_vis);
     fprintf("size of L_vis:%i",size(L_vis));
     size(L_vis);
-    %L_vis = permute(L_vis, [2,3,1]);
+    L_vis = permute(L_vis, [2,3,1]);
     %L_vis = permute(L_vis, [1,2,3]);
     
     
     
-    L_vis = imresize(L_vis, [256, 32]);
-    %L_vis = imresize(L_vis,0.5);
+    %L_vis = imresize(L_vis, [256, 32]);
+    L_vis = imresize(L_vis,0.2);
     %L_vis = imresize(L_vis, [256, 32],'bilinear');
 
     Lt_vis = CCM * UvToRgb(uv_true);
@@ -235,10 +235,10 @@ for i_data = 1:length(data)
     Lt_vis = uint8(255 * ApplySrgbGamma(max(0, min(1, Lt_vis))));
     size(Lt_vis);
     fprintf("size of L_vis:%i",size(Lt_vis));
-    %Lt_vis = permute(Lt_vis, [2,3,1]);
+    Lt_vis = permute(Lt_vis, [2,3,1]);
     %Lt_vis = permute(Lt_vis, [1,2,3]);
-    Lt_vis = imresize(Lt_vis, [256, 32]);
-    %Lt_vis = imresize(Lt_vis,0.5);
+    %Lt_vis = imresize(Lt_vis, [256, 32]);
+    Lt_vis = imresize(Lt_vis,0.2);
     %L_vis = imresize(L_vis, [32, NaN]);
     %Lt_vis = imresize(Lt_vis, [256, 32],'bilinear');
 
